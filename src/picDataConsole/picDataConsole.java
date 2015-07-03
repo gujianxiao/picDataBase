@@ -101,6 +101,8 @@ public class picDataConsole {
                         
     	        		for(int i = 0; i < list.length; i++){
     	        			 String path=list[i].getAbsolutePath();
+    	        			 path=path.replaceAll("\\\\", "\\\\\\\\");
+    	        			 String name=list[i].getName();
                             try {
 								Metadata metadata = ImageMetadataReader.readMetadata(list[i]);
 								for (Directory directory : metadata.getDirectories()) {
@@ -126,63 +128,32 @@ public class picDataConsole {
 								
 								//insert into database picdata;
 								//search for latest time pic;
-								String sqllocation="select MAX(id) from picdata where location = '"+location+"'";
-								ResultSet latestlocation=insert.executeSQL(sqllocation);
-								int llocation=0;
-								try {
-									latestlocation.next();
-									llocation=latestlocation.getInt(1);
-								} catch (SQLException e2) {
-									// TODO Auto-generated catch block
-									e2.printStackTrace();
-								}
-								
-								if(llocation>0){
-								String sqltime="select MAX(time) from picdata where location = '"+location+"'";
-								ResultSet latesttime=insert.executeSQL(sqltime);
-								
-								int t = 0;
-								try {
+								String lastdata="select * from picdata where model = '"+model+"' and time='"+time+"'";
+								ResultSet latest=insert.executeSQL(lastdata);
+									if(!latest.next()){
 									
-									latesttime.next();
-									String ltime=latesttime.getString(1);
-									if(ltime!=null)
-									t = time.compareTo(ltime);
-									
-								} catch (SQLException e1) {
-									// TODO Auto-generated catch block
-									e1.printStackTrace();
-								}
-								if(t>0){
-								String sql="insert into picdata values(null,'"+path+"','"+time+"','"+model+"','"+location+"','"+dpi+"')";
-						        insert.executeUpdateSQL(sql);
-								}
-								}
-								else{
-									String sql="insert into picdata values(null,'"+path+"','"+time+"','"+model+"','"+location+"','"+dpi+"')";
-							        insert.executeUpdateSQL(sql);
-								}
+								String sql="insert into picdata values(null,'"+path+"','"+name+"','"+model+"','"+location+"','"+dpi+"','"+time+"')";
+						        int r=insert.executeUpdateSQL(sql);
 								System.out.println(time);
 								System.out.println(dpi);
 								System.out.println(model);
 								System.out.println(location);	
-								System.out.println(path);	
+								System.out.println(path);
+								System.out.println(name);
+									}
 							} catch (ImageProcessingException e1) {
 								// TODO Auto-generated catch block
 								e1.printStackTrace();
 							} catch (IOException e1) {
 								// TODO Auto-generated catch block
 								e1.printStackTrace();
+							} catch (SQLException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
 							}
                             
     	        		}
     	                
-    	                try {
-							conn.close();
-						} catch (SQLException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
     	                 
     	                 
     	                 
