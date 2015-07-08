@@ -2,6 +2,8 @@ package picDataConsole;
  
 import picDataConsole.databean;
 import java.awt.Container;  
+import java.awt.FlowLayout;
+import java.awt.TextField;
 
 import java.awt.GridLayout;  
 import java.awt.event.MouseEvent;
@@ -10,6 +12,7 @@ import java.awt.event.MouseListener;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;  
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;  
 import javax.swing.JTextArea;  
 
@@ -67,10 +70,12 @@ public class picDataConsole {
     
             
 	public static void main(String[] args){
+		
 		    final JFileChooser fileChooser = new JFileChooser(".");
     		JFrame frame=new JFrame("PicDataConsole");
     		final JTextArea picDir=new JTextArea();
     		JButton button=new JButton("选择文件夹");
+     	    final Container content = frame.getContentPane(); 
     		 MouseListener ml = new MouseListener() {  
     	         public void mouseClicked(MouseEvent e) {  
     	             if (e.getClickCount() == 2) {  
@@ -85,26 +90,27 @@ public class picDataConsole {
     	            		}
     	                String dir= picDir.getText();
     	                File d=new File(dir);
-    	        		File list[] = d.listFiles();
+    	        		File list[] = d.listFiles();//file list
                         databean insert=new databean();
                         Connection conn = null;
                         ResultSet rs=null;
-                        insert.setDB("pic data");
-                        conn=insert.getConn();
+                        insert.setDB("pic data");//set database name
+                        conn=insert.getConn();//connect to database
                         String model=null;
                         String time=null;
                         String dpi=null;
                         String location=null;
-						//search for the biggest id in the pic database;
-//                        String searchforbig="select maxd(id) from pic database";
-//                        rs=insert.executeSQL(searchforbig);
-                        
+                        int piccount=list.length;
+                        int addcount=0;
+
+ // iterate every picture                       
     	        		for(int i = 0; i < list.length; i++){
+    	        			 
     	        			 String path=list[i].getAbsolutePath();
-    	        			 path=path.replaceAll("\\\\", "\\\\\\\\");
+    	        			 path=path.replaceAll("\\\\", "\\\\\\\\");//replace the "\\" to "\\\\" so that can be insert into database in "\"
     	        			 String name=list[i].getName();
                             try {
-								Metadata metadata = ImageMetadataReader.readMetadata(list[i]);
+								Metadata metadata = ImageMetadataReader.readMetadata(list[i]);//create a Metadata class to read the info of picture
 								for (Directory directory : metadata.getDirectories()) {
 						            for (Tag tag : directory.getTags()) {
 						                String tagName = tag.getTagName();
@@ -126,14 +132,15 @@ public class picDataConsole {
 								location=l[lg-1];
 
 								
-								//insert into database picdata;
-								//search for latest time pic;
+							
+								//search for same time pic;
 								String lastdata="select * from picdata where model = '"+model+"' and time='"+time+"'";
 								ResultSet latest=insert.executeSQL(lastdata);
-									if(!latest.next()){
-									
+									if(!latest.next()){// while there is no same picture,then insert it into database
+									addcount++;
 								String sql="insert into picdata values(null,'"+path+"','"+name+"','"+model+"','"+location+"','"+dpi+"','"+time+"')";
 						        int r=insert.executeUpdateSQL(sql);
+						        //print the pic info for debug
 								System.out.println(time);
 								System.out.println(dpi);
 								System.out.println(model);
@@ -153,9 +160,10 @@ public class picDataConsole {
 							}
                             
     	        		}
-    	                
-    	                 
-    	                 
+    	                //show the console info;
+    	        		TextField consoleInfo=new TextField();
+    	                consoleInfo.setText(location+"处理完毕！图片集共有图片"+piccount+"张，新增图片"+addcount+"张。");
+    	                content.add(consoleInfo);
     	                 
     	                 
     	                 
@@ -183,14 +191,14 @@ public class picDataConsole {
     	         }  
     	            }; 
     	   button.addMouseListener(ml);
-    	   button.setSize(20,10);
-    	   picDir.setSize(10,20);
-
-    	   Container content = frame.getContentPane();  
-    	   content.setLayout(new GridLayout(1,2));  
-    	   content.add(picDir);
+    	   JPanel txt=new JPanel();
+    	   picDir.setColumns(15);
+    	   picDir.setRows(1);
+           txt.add(picDir); 
+    	   content.setLayout(new FlowLayout(FlowLayout.LEFT));  
+    	   content.add(txt);
     	   content.add(button);
-    	   frame.setSize(400, 300); 
+    	   frame.setSize(400,500);
     	   frame.setVisible(true);
     	   frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
        }
