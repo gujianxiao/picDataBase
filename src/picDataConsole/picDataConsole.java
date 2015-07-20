@@ -114,35 +114,32 @@ public class picDataConsole {
 									pmValue.add(tp);
 								}
 								// select the range of time to detect error
-                            	String searchSql="select Min(time) from picdata where location='北邮'";                         	
-                            	rs=insert.executeSQL(searchSql);
-                            	rs.next();
-                            	String minTime=rs.getString(1);
-                            	searchSql="select Max(time) from picdata where location='北邮'";
-                            	rs=insert.executeSQL(searchSql);
-                            	rs.next();
-                            	String maxTime=rs.getString(1);
+//                             	String searchSql="select Min(time) from picdata where location='北邮'";                         	
+//                            	rs=insert.executeSQL(searchSql);
+//                            	rs.next();
+//                            	String minTime=rs.getString(1);
+//                            	searchSql="select Max(time) from picdata where location='北邮'";
+//                            	rs=insert.executeSQL(searchSql);
+//                            	rs.next();
+//                            	String maxTime=rs.getString(1);
                                 //   iterator the pmValue to update database
                                 for(int i=0;i<pmValue.size();i++){
                                 	String[] dl1=pmValue.get(i);
-                               	String[] dl2=pmValue.get(i+1);                              	
+                               	    String[] dl2=pmValue.get(i+1);                              	
                                 	if(dl1[0].equalsIgnoreCase("001008")){
                                 		String beginTime=dl1[1].replace('-', ':');
                                 		String endTime=dl2[1].replace('-', ':');
-                                		if((beginTime.compareTo(minTime)>0)&&(endTime.compareTo(maxTime)<0)){
+//                                		if((beginTime.compareTo(minTime)>0)&&(endTime.compareTo(maxTime)<0)){
                                         String updateSql="update picdata set pm25='"+dl1[2]+"',pm10='"+dl1[3]+"',co2='"+dl1[4]+"' where '"+beginTime+"'<time and time<'"+endTime+"'";
         								insert.executeUpdateSQL(updateSql); 		
-                                		}
-                                		else{
-                                			System.out.println("out of the time range!");
-                                		}
+  //                              		}
+//                              		else{
+//                                			System.out.println("out of the time range!");
+//                                		}
                                 	}
                                 }
 								
 							} catch (IOException e1) {
-								// TODO Auto-generated catch block
-								e1.printStackTrace();
-							} catch (SQLException e1) {
 								// TODO Auto-generated catch block
 								e1.printStackTrace();
 							}
