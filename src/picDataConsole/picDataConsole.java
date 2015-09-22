@@ -126,11 +126,264 @@ public class picDataConsole {
                                 for(int i=0;i<pmValue.size();i++){
                                 	String[] dl1=pmValue.get(i);
                                	    String[] dl2=pmValue.get(i+1);                              	
+                                	if(dl1[0].equalsIgnoreCase("001003")){
+                                		String beginTime=dl1[1].replace('-', ':');
+                                		String endTime=dl2[1].replace('-', ':');
+                                		int type;
+                                		if(!dl1[2].equalsIgnoreCase("NULL")){
+                                		type=Integer.parseInt(dl1[2]);
+                                		if(type>0&&type<=50) type=0;
+                                		if(type>50&&type<=100) type=1;
+                                		if(type>100&&type<=150) type=2;
+                                		if(type>150&&type<=200) type=3;
+                                		if(type>200&&type<=300) type=4;
+                                		if(type>300&&type<=600) type=5;
+                                		}
+                                		else type=100;
+//                                		if((beginTime.compareTo(minTime)>0)&&(endTime.compareTo(maxTime)<0)){
+                                        String updateSql="update picdata set pm25='"+dl1[2]+"',pm10='"+dl1[3]+"',co2='"+dl1[4]+"',type="+type+"  where '"+beginTime+"'<time and time<'"+endTime+"' and location='北方工业大学'";
+        								insert.executeUpdateSQL(updateSql); 		
+  //                              		}
+//                              		else{
+//                                			System.out.println("out of the time range!");
+//                                		}
+                                	}
+                                	if(dl1[0].equalsIgnoreCase("001006")){
+                                		String beginTime=dl1[1].replace('-', ':');
+                                		String endTime=dl2[1].replace('-', ':');
+                                		int type;
+                                		if(!dl1[2].equalsIgnoreCase("NULL")){
+                                		type=Integer.parseInt(dl1[2]);
+                                		if(type>0&&type<=50) type=0;
+                                		if(type>50&&type<=100) type=1;
+                                		if(type>100&&type<=150) type=2;
+                                		if(type>150&&type<=200) type=3;
+                                		if(type>200&&type<=300) type=4;
+                                		if(type>300&&type<=600) type=5;
+                                		}
+                                		else type=100;
+//                                		if((beginTime.compareTo(minTime)>0)&&(endTime.compareTo(maxTime)<0)){
+                                        String updateSql="update picdata set pm25='"+dl1[2]+"',pm10='"+dl1[3]+"',co2='"+dl1[4]+"', type="+type+"  where '"+beginTime+"'<time and time<'"+endTime+"' and location='北京大学'";
+        								insert.executeUpdateSQL(updateSql); 		
+  //                              		}
+//                              		else{
+//                                			System.out.println("out of the time range!");
+//                                		}
+                                	}
+                                	if(dl1[0].equalsIgnoreCase("001006")){
+                                		String beginTime=dl1[1].replace('-', ':');
+                                		String endTime=dl2[1].replace('-', ':');
+                                		int type;
+                                		if(!dl1[2].equalsIgnoreCase("NULL")){
+                                		type=Integer.parseInt(dl1[2]);
+                                		if(type>0&&type<=50) type=0;
+                                		if(type>50&&type<=100) type=1;
+                                		if(type>100&&type<=150) type=2;
+                                		if(type>150&&type<=200) type=3;
+                                		if(type>200&&type<=300) type=4;
+                                		if(type>300&&type<=600) type=5;
+                                		}
+                                		else type=100;
+//                                		if((beginTime.compareTo(minTime)>0)&&(endTime.compareTo(maxTime)<0)){
+                                        String updateSql="update picdata set pm25='"+dl1[2]+"',pm10='"+dl1[3]+"',co2='"+dl1[4]+"',type="+type+"   where '"+beginTime+"'<time and time<'"+endTime+"' and location='中关村'";
+        								insert.executeUpdateSQL(updateSql); 		
+  //                              		}
+//                              		else{
+//                                			System.out.println("out of the time range!");
+//                                		}
+                                	}
+                                	if(dl1[0].equalsIgnoreCase("001006")){
+                                		String beginTime=dl1[1].replace('-', ':');
+                                		String endTime=dl2[1].replace('-', ':');
+                                		int type;
+                                		if(!dl1[2].equalsIgnoreCase("NULL")){
+                                		type=Integer.parseInt(dl1[2]);
+                                		if(type>0&&type<=50) type=0;
+                                		if(type>50&&type<=100) type=1;
+                                		if(type>100&&type<=150) type=2;
+                                		if(type>150&&type<=200) type=3;
+                                		if(type>200&&type<=300) type=4;
+                                		if(type>300&&type<=600) type=5;
+                                		}
+                                		else type=100;
+//                                		if((beginTime.compareTo(minTime)>0)&&(endTime.compareTo(maxTime)<0)){
+                                        String updateSql="update picdata set pm25='"+dl1[2]+"',pm10='"+dl1[3]+"',co2='"+dl1[4]+"',type="+type+"  where '"+beginTime+"'<time and time<'"+endTime+"' and location='MSRA'";
+        								insert.executeUpdateSQL(updateSql); 		
+  //                              		}
+//                              		else{
+//                                			System.out.println("out of the time range!");
+//                                		}
+                                	}
+                                	if(dl1[0].equalsIgnoreCase("001007")){
+                                		String beginTime=dl1[1].replace('-', ':');
+                                		String endTime=dl2[1].replace('-', ':');
+                                		int type;
+                                		if(!dl1[2].equalsIgnoreCase("NULL")){
+                                		type=Integer.parseInt(dl1[2]);
+                                		if(type>0&&type<=50) type=0;
+                                		if(type>50&&type<=100) type=1;
+                                		if(type>100&&type<=150) type=2;
+                                		if(type>150&&type<=200) type=3;
+                                		if(type>200&&type<=300) type=4;
+                                		if(type>300&&type<=600) type=5;
+                                		}
+                                		else type=100;
+//                                		if((beginTime.compareTo(minTime)>0)&&(endTime.compareTo(maxTime)<0)){
+                                        String updateSql="update picdata set pm25='"+dl1[2]+"',pm10='"+dl1[3]+"',co2='"+dl1[4]+"' ,type="+type+"  where '"+beginTime+"'<time and time<'"+endTime+"' and location='奥林匹克森林公园'";
+        								insert.executeUpdateSQL(updateSql); 		
+  //                              		}
+//                              		else{
+//                                			System.out.println("out of the time range!");
+//                                		}
+                                	}
+                                	if(dl1[0].equalsIgnoreCase("001007")){
+                                		String beginTime=dl1[1].replace('-', ':');
+                                		String endTime=dl2[1].replace('-', ':');
+                                		int type;
+                                		if(!dl1[2].equalsIgnoreCase("NULL")){
+                                		type=Integer.parseInt(dl1[2]);
+                                		if(type>0&&type<=50) type=0;
+                                		if(type>50&&type<=100) type=1;
+                                		if(type>100&&type<=150) type=2;
+                                		if(type>150&&type<=200) type=3;
+                                		if(type>200&&type<=300) type=4;
+                                		if(type>300&&type<=600) type=5;
+                                		}
+                                		else type=100;
+//                                		if((beginTime.compareTo(minTime)>0)&&(endTime.compareTo(maxTime)<0)){
+                                        String updateSql="update picdata set pm25='"+dl1[2]+"',pm10='"+dl1[3]+"',co2='"+dl1[4]+"',type="+type+"   where '"+beginTime+"'<time and time<'"+endTime+"' and location='对外经贸大学'";
+        								insert.executeUpdateSQL(updateSql); 		
+  //                              		}
+//                              		else{
+//                                			System.out.println("out of the time range!");
+//                                		}
+                                	}
                                 	if(dl1[0].equalsIgnoreCase("001008")){
                                 		String beginTime=dl1[1].replace('-', ':');
                                 		String endTime=dl2[1].replace('-', ':');
+                                		int type;
+                                		if(!dl1[2].equalsIgnoreCase("NULL")){
+                                		type=Integer.parseInt(dl1[2]);
+                                		if(type>0&&type<=50) type=0;
+                                		if(type>50&&type<=100) type=1;
+                                		if(type>100&&type<=150) type=2;
+                                		if(type>150&&type<=200) type=3;
+                                		if(type>200&&type<=300) type=4;
+                                		if(type>300&&type<=600) type=5;
+                                		}
+                                		else type=100;
 //                                		if((beginTime.compareTo(minTime)>0)&&(endTime.compareTo(maxTime)<0)){
-                                        String updateSql="update picdata set pm25='"+dl1[2]+"',pm10='"+dl1[3]+"',co2='"+dl1[4]+"' where '"+beginTime+"'<time and time<'"+endTime+"'";
+                                        String updateSql="update picdata set pm25='"+dl1[2]+"',pm10='"+dl1[3]+"',co2='"+dl1[4]+"',type="+type+"  where '"+beginTime+"'<time and time<'"+endTime+"' and location='北京邮电大学'";
+        								insert.executeUpdateSQL(updateSql); 		
+  //                              		}
+//                              		else{
+//                                			System.out.println("out of the time range!");
+//                                		}
+                                	}
+                                	if(dl1[0].equalsIgnoreCase("001008")){
+                                		String beginTime=dl1[1].replace('-', ':');
+                                		String endTime=dl2[1].replace('-', ':');
+                                		int type;
+                                		if(!dl1[2].equalsIgnoreCase("NULL")){
+                                		type=Integer.parseInt(dl1[2]);
+                                		if(type>0&&type<=50) type=0;
+                                		if(type>50&&type<=100) type=1;
+                                		if(type>100&&type<=150) type=2;
+                                		if(type>150&&type<=200) type=3;
+                                		if(type>200&&type<=300) type=4;
+                                		if(type>300&&type<=600) type=5;
+                                		}
+                                		else type=100;
+//                                		if((beginTime.compareTo(minTime)>0)&&(endTime.compareTo(maxTime)<0)){
+                                        String updateSql="update picdata set pm25='"+dl1[2]+"',pm10='"+dl1[3]+"',co2='"+dl1[4]+"',type="+type+"   where '"+beginTime+"'<time and time<'"+endTime+"' and location='北邮'";
+        								insert.executeUpdateSQL(updateSql); 		
+  //                              		}
+//                              		else{
+//                                			System.out.println("out of the time range!");
+//                                		}
+                                	}
+                                	if(dl1[0].equalsIgnoreCase("001012")){
+                                		String beginTime=dl1[1].replace('-', ':');
+                                		String endTime=dl2[1].replace('-', ':');
+                                		int type;
+                                		if(!dl1[2].equalsIgnoreCase("NULL")){
+                                		type=Integer.parseInt(dl1[2]);
+                                		if(type>0&&type<=50) type=0;
+                                		if(type>50&&type<=100) type=1;
+                                		if(type>100&&type<=150) type=2;
+                                		if(type>150&&type<=200) type=3;
+                                		if(type>200&&type<=300) type=4;
+                                		if(type>300&&type<=600) type=5;
+                                		}
+                                		else type=100;
+//                                		if((beginTime.compareTo(minTime)>0)&&(endTime.compareTo(maxTime)<0)){
+                                        String updateSql="update picdata set pm25='"+dl1[2]+"',pm10='"+dl1[3]+"',co2='"+dl1[4]+"',type="+type+"   where '"+beginTime+"'<time and time<'"+endTime+"' and location='农展馆'";
+        								insert.executeUpdateSQL(updateSql); 		
+  //                              		}
+//                              		else{
+//                                			System.out.println("out of the time range!");
+//                                		}
+                                	}
+                                	if(dl1[0].equalsIgnoreCase("001014")){
+                                		String beginTime=dl1[1].replace('-', ':');
+                                		String endTime=dl2[1].replace('-', ':');
+                                		int type;
+                                		if(!dl1[2].equalsIgnoreCase("NULL")){
+                                		type=Integer.parseInt(dl1[2]);
+                                		if(type>0&&type<=50) type=0;
+                                		if(type>50&&type<=100) type=1;
+                                		if(type>100&&type<=150) type=2;
+                                		if(type>150&&type<=200) type=3;
+                                		if(type>200&&type<=300) type=4;
+                                		if(type>300&&type<=600) type=5;
+                                		}
+                                		else type=100;
+//                                		if((beginTime.compareTo(minTime)>0)&&(endTime.compareTo(maxTime)<0)){
+                                        String updateSql="update picdata set pm25='"+dl1[2]+"',pm10='"+dl1[3]+"',co2='"+dl1[4]+"',type="+type+"   where '"+beginTime+"'<time and time<'"+endTime+"' and location='朝阳公园'";
+        								insert.executeUpdateSQL(updateSql); 		
+  //                              		}
+//                              		else{
+//                                			System.out.println("out of the time range!");
+//                                		}
+                                	}
+                                	if(dl1[0].equalsIgnoreCase("001015")){
+                                		String beginTime=dl1[1].replace('-', ':');
+                                		String endTime=dl2[1].replace('-', ':');
+                                		int type;
+                                		if(!dl1[2].equalsIgnoreCase("NULL")){
+                                		type=Integer.parseInt(dl1[2]);
+                                		if(type>0&&type<=50) type=0;
+                                		if(type>50&&type<=100) type=1;
+                                		if(type>100&&type<=150) type=2;
+                                		if(type>150&&type<=200) type=3;
+                                		if(type>200&&type<=300) type=4;
+                                		if(type>300&&type<=600) type=5;
+                                		}
+                                		else type=100;
+//                                		if((beginTime.compareTo(minTime)>0)&&(endTime.compareTo(maxTime)<0)){
+                                        String updateSql="update picdata set pm25='"+dl1[2]+"',pm10='"+dl1[3]+"',co2='"+dl1[4]+"' ,type="+type+"  where '"+beginTime+"'<time and time<'"+endTime+"' and location='车公庄'";
+        								insert.executeUpdateSQL(updateSql); 		
+  //                              		}
+//                              		else{
+//                                			System.out.println("out of the time range!");
+//                                		}
+                                	}
+                                	if(dl1[0].equalsIgnoreCase("001020")){
+                                		String beginTime=dl1[1].replace('-', ':');
+                                		String endTime=dl2[1].replace('-', ':');
+                                		int type;
+                                		if(!dl1[2].equalsIgnoreCase("NULL")){
+                                		type=Integer.parseInt(dl1[2]);
+                                		if(type>0&&type<=50) type=0;
+                                		if(type>50&&type<=100) type=1;
+                                		if(type>100&&type<=150) type=2;
+                                		if(type>150&&type<=200) type=3;
+                                		if(type>200&&type<=300) type=4;
+                                		if(type>300&&type<=600) type=5;
+                                		}
+                                		else type=100;
+//                                		if((beginTime.compareTo(minTime)>0)&&(endTime.compareTo(maxTime)<0)){
+                                        String updateSql="update picdata set pm25='"+dl1[2]+"',pm10='"+dl1[3]+"',co2='"+dl1[4]+"' ,type="+type+"  where '"+beginTime+"'<time and time<'"+endTime+"' and location='天坛'";
         								insert.executeUpdateSQL(updateSql); 		
   //                              		}
 //                              		else{
@@ -236,11 +489,11 @@ public class picDataConsole {
 								
 							
 								//search for same time pic;
-								String lastdata="select * from picdata where model = '"+model+"' and time='"+time+"'";
+								String lastdata="select * from picdata where name='"+name+"'";
 								ResultSet latest=insert.executeSQL(lastdata);
 									if(!latest.next()){// while there is no same picture,then insert it into database
 									addcount++;
-								String sql="insert into picdata values(null,'"+path+"','"+name+"','"+model+"','"+location+"','"+dpi+"','"+time+"',null,null,null)";
+								String sql="insert into picdata values(null,'"+path+"','"+name+"','"+model+"','"+location+"','"+dpi+"','"+time+"',null,null,null,null)";
 						        int r=insert.executeUpdateSQL(sql);
 						        //print the pic info for debug
 								System.out.println(time);
